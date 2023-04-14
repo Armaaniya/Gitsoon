@@ -28,19 +28,28 @@
             <input class="btn" type="submit" value="Submit">
         </form>
     </section>
+    <ul id="listOfitems"></ul>
     <script>
         function saveToLocalStorage(event) {
             event.preventDefault();
             const name = event.target.username.value;
             const email = event.target.emailId.value;
-            localStorage.setItem('name', name);
-            localStorage.setItem('email', email);
+           
             const obj={
                 name,
                 email
             }
-           localStorage.setItem('userDetails', JSON.stringify(obj));
+        
+           localStorage.setItem(obj.email, JSON.stringify(obj));
+          showUserOnScreen(obj)
         }
+          function showUserOnScreen(obj){
+            const parentElem=document.getElementById('listOfitems')
+            const childElem=document.createElement('li')
+            childElem.textContent=obj.name +' - '+obj.email
+            parentElem.appendChild(childElem)
+          }
+        
         
     </script>
 </body>

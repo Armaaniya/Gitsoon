@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Appointment Site</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Booking Appointment</h1>
+    </header>
+    <section class="container">
+        <form onSubmit="saveToLocalStorage(event)" id="my-form">
+            <h1>Add User</h1>
+            <div class="msg"></div>
+            <div>
+                <label form="name">Name:</label>
+                <input type="text"  name="username" required/>
+            </div>
+            <div>
+                <label form="name">Email:</label>
+                <input type="email"  name="emailId" required/>
+            </div>
+            <input class="btn" type="submit" value="Submit">
+        </form>
+    </section>
+    <script>
+        function saveToLocalStorage(event) {
+            event.preventDefault();
+            const name = event.target.username.value;
+            const email = event.target.emailId.value;
+            localStorage.setItem('name', name);
+            localStorage.setItem('email', email);
+
+        }
+        // By Clicking Change Form Colour
+const btn=document.querySelector('.btn');
+btn.addEventListener('click',(e)=> {
+    e.preventDefault();
+    document.querySelector('#my-form').style.background='#ccc';
+    document.querySelector('body').classList.add('bg-dark');
+});
+    </script>
+</body>
+
+</html>

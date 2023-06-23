@@ -1,0 +1,66 @@
+function createPost(post) {
+    return new Promise((resolve, reject) => {
+      // Simulating asynchronous operation of creating a new post and returns a promise that resolves with the new post object. 
+      setTimeout(() => {
+        const newPost = { id: Date.now(), content: post };
+        resolve(newPost);
+      }, 1000);
+    });
+  }
+  //updateLastUserActivityTime simulates updating the last activity time of the user and returns a promise that resolves with the updated time.
+  function updateLastUserActivityTime() {
+    return new Promise((resolve, reject) => {
+      // Simulating asynchronous operation
+      setTimeout(() => {
+        const lastActivityTime = new Date().toLocaleString();
+        resolve(lastActivityTime);
+      }, 1000);
+    });
+  }
+ // it calls the deletePost function with the ID of the newly created post and waits for the deletion promise to resolve. Finally, it filters out the deleted post from the list of all posts and logs the remaining posts. 
+  function deletePost(postId) {
+    return new Promise((resolve, reject) => {
+      // Simulating asynchronous operation
+      setTimeout(() => {
+        resolve(postId);
+      }, 1000);
+    });
+  }
+  
+  function getAllPosts() {
+    // Simulating fetching all posts
+    return [
+      { id: 1, content: "Post 1" },
+      { id: 2, content: "Post 2" },
+      { id: 3, content: "Post 3" }
+    ];
+  }
+  
+  function logPostsAndActivity(posts, lastActivityTime) {
+    console.log("Posts:", posts);
+    console.log("Last Activity Time:", lastActivityTime);
+  }
+  
+  // Usage
+  function main() {
+    const post = "New post";
+  
+    createPost(post)
+      .then((newPost) => {
+        return Promise.all([Promise.resolve(newPost), updateLastUserActivityTime()]);
+      })
+      .then(([newPost, lastActivityTime]) => {
+        logPostsAndActivity([...getAllPosts(), newPost], lastActivityTime);
+        return deletePost(newPost.id);
+      })
+      .then((deletedPostId) => {
+        const remainingPosts = getAllPosts().filter(post => post.id !== deletedPostId);
+        console.log("Remaining Posts:", remainingPosts);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  
+  main();
+  

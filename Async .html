@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Async Await</h1>
+    <script>
+       
+          //Async Await
+          async function getButter() {
+            return new Promise((resolve, reject) => {
+              setTimeout(() => {
+                resolve('Butter');
+              }, 2000);
+            });
+          }
+          
+          async function getColdDrinks() {
+            return new Promise((resolve, reject) => {
+              setTimeout(() => {
+                resolve('Cold Drinks');
+              }, 1500);
+            });
+          }
+          
+          async function husbandTask() {
+            try {
+              const butter = await getButter();
+              console.log('Husband got', butter);
+              const drinks = await getColdDrinks();
+              console.log('Husband got', drinks);
+              console.log('Husband is happy!');
+            } catch (error) {
+              console.log('Something went wrong:', error);
+            }
+          }
+          
+          husbandTask();
+          
+    </script>
+</body>
+</html>
